@@ -5,7 +5,7 @@ from os import linesep #serve para dar quebra de linha;
 #link de previsão do tempo que será enviado;
 link = "https://www.google.com/search?q=previs%C3%A3o+do+tempo&oq=previs%C3%A3o+do&aqs=chrome.2.69i57j69i59l2j69i60l2.8463j0j1&sourceid=chrome&ie=UTF-8"
 
-token = '***COLOQUE_O_SEU_TOKEN_AQUI***'#token do bot;
+token = 'COLOQUE_SEU_TOKEN_AQUI'#token do bot;
 
 bot = telepot.Bot(token) #passando o token para poder gerenciar o bot;
 
@@ -34,10 +34,11 @@ while True: # Loop infinito para bot nunca parar.
             self.PegarMensagens = str(EditAtualizacoes[msg]['text']) #pega a mensagem enviada;
 
     try:
-        DADOS1 = DADOS('message')
+        DADOS1 = DADOS('message') # DADOS1 recebe a classe DADOS sendo que o parametro msg se torna 'message';
     
-    except(KeyError):
-        DADOS1 = DADOS('edited_message')
+    except(KeyError): # tratamento de exceção
+        DADOS1 = DADOS('edited_message') # caso uma mensagem sofra uma edição e cause um KeyError,
+                                         # o parametro msg deixa de ser 'message' e se torna 'edited_message';
 
 
     if DADOS1.DATA != OldData: # verifica se existe diferença entre as atualizações de msg; 
@@ -48,9 +49,8 @@ while True: # Loop infinito para bot nunca parar.
     if mensagemEnviada == False: #se mensagem não foi enviada; 
         if DADOS1.PegarMensagens == "/tempo": #verifica se a mensagem é igual a /tempo;
             bot.sendMessage(DADOS1.CHAT_ID,f'Olá {DADOS1.NOME} aqui está o link: {linesep}{link}') #envia o link para o seguinte chat ID;
-            print(DADOS1.PegarMensagens)
-            print(DADOS1.NOME)
+            print(DADOS1.PegarMensagens) # ecreve no meu terminal /tempo
+            print(DADOS1.NOME) # mostra o nome do infeliz que enviou a mensagem;
             mensagemEnviada = True # mensagem foi enviada;
 
     sleep(0.1) #pausa de 1 segundo;
-
