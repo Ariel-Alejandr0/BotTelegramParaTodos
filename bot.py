@@ -9,11 +9,7 @@ token = 'COLOQUE_SEU_TOKEN_AQUI'#token do bot;
 
 bot = telepot.Bot(token) #passando o token para poder gerenciar o bot;
 
-cont = 0 #contador, serve para impedir envio excessivo de mensagens;
-
 mensagemEnviada = False # variável para verificar o envio da mensagem;
-
-
 
 OldData = 0 # variável qua armazena  a antiga data;
 
