@@ -5,7 +5,7 @@ from os import linesep #serve para dar quebra de linha;
 #link de previsão do tempo que será enviado;
 link = "https://www.google.com/search?q=previs%C3%A3o+do+tempo&oq=previs%C3%A3o+do&aqs=chrome.2.69i57j69i59l2j69i60l2.8463j0j1&sourceid=chrome&ie=UTF-8"
 
-token = 'COLOQUE_SEU_TOKEN_AQUI'#token do bot;
+token = '***cole_o_seu_token_aqui***'#token do bot;
 
 bot = telepot.Bot(token) #passando o token para poder gerenciar o bot;
 
@@ -37,20 +37,22 @@ while True: # Loop infinito para bot nunca parar.
 
     try:
         dadosFormatados = Dados('message', 'text') # dadosFormatados recebe a classe DADOS sendo que o parametro msg se torna 'message';
-    
-    except(KeyError): # tratamento de exceção
-        dadosFormatados = Dados('message', 'sticker') # caso uma mensagem sofra uma edição e cause um KeyError,
+                                                   # o outro parametro é o 'text' que pode ser altereado;
+    except:
+        try:
+            dadosFormatados = Dados('edited_message', 'text')# caso uma mensagem sofra uma edição e cause um KeyError,
                                          # o parametro msg deixa de ser 'message' e se torna 'edited_message';
-    except(KeyError):
-        dadosFormatados = Dados('edited_message', 'text')
+                                         # e o parametro IS_texto se torna 'sticker';
+        except(KeyError):
+            dadosFormatados = Dados('message', 'sticker')
     
-    except(KeyError):
-        dadosFormatados = Dados('edited_message', 'sticker')
-
+                                         
+    
     if dadosFormatados.data != old_data: # verifica se existe diferença entre as atualizações de msg; 
         mensagemEnviada = False # Mensagem ainda não foi envida;
     else:
-        mensagemEnviada = True
+        mensagemEnviada = True # mensagem foi enviada
+    
     old_data = dadosFormatados.data
 
     if mensagemEnviada == False: #se mensagem não foi enviada; 
@@ -58,6 +60,7 @@ while True: # Loop infinito para bot nunca parar.
             bot.sendMessage(dadosFormatados.chat_id,f'Olá {dadosFormatados.nome} aqui está o link: {linesep}{link}') #envia o link para o seguinte chat ID;
             print(dadosFormatados.PegarMensagens) # ecreve no meu terminal /tempo
             print(dadosFormatados.nome) # mostra o nome do infeliz que enviou a mensagem;
-            mensagemEnviada = True # mensagem foi enviada;
+            #mensagemEnviada = True  mensagem foi enviada;
 
     sleep(0.1) #pausa de 1 segundo;
+
