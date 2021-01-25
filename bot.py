@@ -44,7 +44,13 @@ while True: # Loop infinito para bot nunca parar.
                                          # o parametro msg deixa de ser 'message' e se torna 'edited_message';
                                          # e o parametro IS_texto se torna 'sticker';
         except(KeyError):
-            dadosFormatados = Dados('message', 'sticker')
+            try:    
+                dadosFormatados = Dados('message', 'sticker')
+            except:
+                try:    
+                    dadosFormatados = Dados('message', 'photo')
+                except(KeyError):
+                    dadosFormatados = Dados('edit_message', 'photo')
     
                                          
     
