@@ -5,7 +5,7 @@ from os import linesep #serve para dar quebra de linha;
 #link de previsão do tempo que será enviado;
 link = "https://www.google.com/search?q=previs%C3%A3o+do+tempo&oq=previs%C3%A3o+do&aqs=chrome.2.69i57j69i59l2j69i60l2.8463j0j1&sourceid=chrome&ie=UTF-8"
 
-token = '1572619085:AAEgPMqcm0MXOzQIBWo7z7EGEIyE_f_Iu8s'#token do bot;
+token = 'COLOQUE_SEU_TOKEN_AQUI'#token do bot;
 
 bot = telepot.Bot(token) #passando o token para poder gerenciar o bot;
 
