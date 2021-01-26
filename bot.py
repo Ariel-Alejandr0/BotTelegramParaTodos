@@ -35,22 +35,34 @@ while True: # Loop infinito para bot nunca parar.
             self.nome = str(EditAtualizacoes[msg]['from']['first_name']) # pega o nome de quem enviou a msg; 
             self.PegarMensagens = str(EditAtualizacoes[msg][IS_texto]) #pega a mensagem enviada;
 
+    # tratamento de erros que podem acontecer com formatos de arquivos e mensagens diferentes:
     try:
-        dadosFormatados = Dados('message', 'text') # dadosFormatados recebe a classe DADOS sendo que o parametro msg se torna 'message';
-                                                   # o outro parametro é o 'text' que pode ser altereado;
-    except:
+        # para erros com textos editados
         try:
-            dadosFormatados = Dados('edited_message', 'text')# caso uma mensagem sofra uma edição e cause um KeyError,
-                                         # o parametro msg deixa de ser 'message' e se torna 'edited_message';
-                                         # e o parametro IS_texto se torna 'sticker';
-        except(KeyError):
+            dadosFormatados = Dados('message', 'text')
+        
+        except KeyError:
+            dadosFormatados = Dados('edited_message', 'text')
+    except:
+  
+
+        #para erros com sticker 
+        try:    
+            dadosFormatados = Dados('message', 'sticker')
+        except:
             try:    
-                dadosFormatados = Dados('message', 'sticker')
-            except:
                 try:    
                     dadosFormatados = Dados('message', 'photo')
+
                 except(KeyError):
                     dadosFormatados = Dados('edit_message', 'photo')
+
+            except:
+                #para erros com documentos
+                try:    
+                    dadosFormatados = Dados('message', 'document')
+                except: 
+                    dadosFormatados = Dados('edited_message', 'document')
     
                                          
     
