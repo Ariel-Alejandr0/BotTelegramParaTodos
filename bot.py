@@ -19,15 +19,7 @@ old_data = 0 # variável qua armazena  a antiga data;
 
 print("iniciou!!!")
 
-while True: # Loop infinito para bot nunca parar.
-
-    atualizacaoes = bot.getUpdates() #pega todas as informações do bot;
-    
-                                         #pega o ultimo elemento da variável
-    EditAtualizacoes = atualizacaoes[-1] #neste caso serve apenas para simplificar,
-                                         #a variável anterior;
-    
-    class Dados: # classe DADOS
+class Dados: # classe DADOS
         def __init__(self, msg, IS_texto): # função que cria todas as características da classe
             self.data = int(EditAtualizacoes[msg]['date']) #pega o ID da mensagem;
             
@@ -47,6 +39,16 @@ while True: # Loop infinito para bot nunca parar.
                 bot.sendMessage(self.chat_id,f'Olá {self.nome} o horário dos busão tá aqui: {linesep}{link2}')
                 print(self.PegarMensagens)
                 print(self.nome)
+
+while True: # Loop infinito para bot nunca parar.
+
+    atualizacaoes = bot.getUpdates() #pega todas as informações do bot;
+    
+                                         #pega o ultimo elemento da variável
+    EditAtualizacoes = atualizacaoes[-1] #neste caso serve apenas para simplificar,
+                                         #a variável anterior;
+    
+   
 
     
     # tratamento de erros que podem acontecer com formatos de arquivos e mensagens diferentes:
